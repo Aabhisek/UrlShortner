@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.security.SecureRandom;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 public class UrlService {
@@ -91,5 +92,15 @@ public class UrlService {
                 urlMapping.getClickCount(),
                 urlMapping.getCreatedDate()
         );
+    }
+
+    @Transactional(readOnly = true)
+    public List<UrlResponse> getUrlsByUser(User user) {
+
+        return urlMappingRepository
+                .findByUser(user)
+                .stream()
+                .map(this::toResponse)
+                .toList();
     }
 }

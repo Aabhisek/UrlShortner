@@ -8,6 +8,8 @@ import com.abhisek.urlshortner.repository.UserRepository;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/urls")
 public class UrlController {
@@ -40,5 +42,18 @@ public class UrlController {
                 request,
                 user
         );
+    }
+    @GetMapping
+    public List<UrlResponse> getMyUrls(Authentication authentication) {
+
+        String username = authentication.getName();
+
+        User user = userRepository
+                .findByUsername(username)
+                .orElseThrow(() ->
+                        new RuntimeException("User not found")
+                );
+
+        return urlService.getUrlsByUser(user);
     }
 }
