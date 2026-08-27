@@ -1,4 +1,4 @@
-package com.abhisek.urlshortner.cofig;
+package com.abhisek.urlshortner.config;
 
 import com.abhisek.urlshortner.Service.CustomUserDetailsService;
 import com.abhisek.urlshortner.Service.JwtService;

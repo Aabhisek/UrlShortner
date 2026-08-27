@@ -17,14 +17,12 @@ public class JwtService {
     private final SecretKey secretKey;
     private final long expiration;
 
-    public JwtService(
-            @Value("${jwt.secret}") String secret, @Value("${jwt.expiration}") long expiration) {
+    public JwtService(@Value("${jwt.secret}") String secretkey, @Value("${jwt.expiration}") long expiration) {
 
-        this.secretKey = Keys.hmacShaKeyFor(
-                secret.getBytes(StandardCharsets.UTF_8)
-        );
+        this.secretKey = Keys.hmacShaKeyFor(secretkey.getBytes(StandardCharsets.UTF_8));
 
         this.expiration = expiration;
+
     }
 
     public String generateToken(UserDetails userDetails) {

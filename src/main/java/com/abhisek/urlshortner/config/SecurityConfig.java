@@ -1,6 +1,7 @@
-package com.abhisek.urlshortner.cofig;
+package com.abhisek.urlshortner.config;
 
 import com.abhisek.urlshortner.Service.CustomUserDetailsService;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -14,6 +15,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.stereotype.Component;
 
 @Configuration
 @EnableWebSecurity
@@ -90,5 +92,32 @@ public class SecurityConfig {
                 );
 
         return http.build();
+    }
+
+    @Component
+    @ConfigurationProperties(prefix = "jwt")
+    public static class JwtProperties {
+
+        /** HMAC secret (preferably provided via environment variable) */
+        private String secret;
+
+        /** Expiration in milliseconds */
+        private long expiration = 3600000L; // default 1 hour
+
+        public String getSecret() {
+            return secret;
+        }
+
+        public void setSecret(String secret) {
+            this.secret = secret;
+        }
+
+        public long getExpiration() {
+            return expiration;
+        }
+
+        public void setExpiration(long expiration) {
+            this.expiration = expiration;
+        }
     }
 }

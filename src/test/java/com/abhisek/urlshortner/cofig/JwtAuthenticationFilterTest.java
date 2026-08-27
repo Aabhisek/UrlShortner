@@ -2,6 +2,7 @@ package com.abhisek.urlshortner.cofig;
 
 import com.abhisek.urlshortner.Service.CustomUserDetailsService;
 import com.abhisek.urlshortner.Service.JwtService;
+import com.abhisek.urlshortner.config.JwtAuthenticationFilter;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
