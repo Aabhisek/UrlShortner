@@ -59,8 +59,10 @@ public class SecurityConfig {
         CorsConfiguration configuration = new CorsConfiguration();
 
         configuration.setAllowedOrigins(
-                List.of("http://localhost:5174")
-        );
+                List.of(
+                        "http://localhost:5174",
+                        "https://urlshortner-frontend-5bl7.onrender.com"
+                ));
 
         configuration.setAllowedMethods(
                 List.of(
