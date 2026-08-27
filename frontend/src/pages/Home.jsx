@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 function Home() {
     return (
         <div>
@@ -7,8 +9,13 @@ function Home() {
                 Shorten your long URLs and share them easily.
             </p>
 
-            <button>Login</button>
-            <button>Register</button>
+            <Link to="/login">
+                <button>Login</button>
+            </Link>
+
+            <Link to="/register">
+                <button>Register</button>
+            </Link>
         </div>
     );
 }
